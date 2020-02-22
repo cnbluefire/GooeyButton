@@ -284,6 +284,7 @@ namespace GooeyButton.Controls
                 {
                     Win2DCanvas = new CanvasAnimatedControl();
                     Win2DHost.Children.Add(Win2DCanvas);
+                    Win2DCanvas.IsHitTestVisible = false;
                     Win2DCanvas.CreateResources += OnWin2DCreateResources;
                     Win2DCanvas.Draw += OnWin2DDraw;
                 }
