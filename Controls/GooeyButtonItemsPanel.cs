@@ -69,7 +69,6 @@ namespace GooeyButton.Controls
             {
                 if (item is GooeyButtonItem gooeyButtonItem)
                 {
-                    gooeyButtonItem.IsAnimating = true;
                     gooeyButtonItem.Visibility = Visibility.Visible;
                 }
             }
@@ -242,8 +241,10 @@ namespace GooeyButton.Controls
             {
                 if (item is GooeyButtonItem gooeyButtonItem)
                 {
-                    gooeyButtonItem.IsAnimating = false;
-                    if (!Expanded) gooeyButtonItem.Visibility = Visibility.Collapsed;
+                    if (!Expanded)
+                    {
+                        gooeyButtonItem.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
             ItemsAnimationCompleted?.Invoke(this, EventArgs.Empty);

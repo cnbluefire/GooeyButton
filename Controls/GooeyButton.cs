@@ -362,7 +362,7 @@ namespace GooeyButton.Controls
 
         private void OnWin2DDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            if (isAnimating && panel != null && gooeyButtonItemsProperty != null && property.BackgroundColor.HasValue)
+            if (panel != null && gooeyButtonItemsProperty != null && property.BackgroundColor.HasValue)
             {
                 var source = new CanvasCommandList(sender);
                 using (var ds = source.CreateDrawingSession())
@@ -384,10 +384,18 @@ namespace GooeyButton.Controls
                     }
                 }
 
-                effect.BlurAmount = (float)property.BlurAmount;
-                effect.Source = source;
+                if (property.BlurAmount > 0)
+                {
+                    effect.BlurAmount = (float)property.BlurAmount;
+                    effect.Source = source;
 
-                args.DrawingSession.DrawImage(image);
+                    args.DrawingSession.DrawImage(image);
+                }
+                else
+                {
+                    args.DrawingSession.DrawImage(source);
+
+                }
             }
         }
 

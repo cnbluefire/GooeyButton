@@ -24,18 +24,8 @@ namespace GooeyButton.Controls
         private long brushColorToken = -1;
         private long brushOpacityToken = -1;
         private bool isAnimating = false;
-        Shape BackgroundShape;
 
         public GooeyButtonItemProperty ItemProperty { get; }
-        public bool IsAnimating
-        {
-            get => isAnimating;
-            set
-            {
-                isAnimating = value;
-                UpdateIsAnimating();
-            }
-        }
 
         public GooeyButtonItem()
         {
@@ -52,8 +42,6 @@ namespace GooeyButton.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            BackgroundShape = GetTemplateChild(nameof(BackgroundShape)) as Shape;
-            UpdateIsAnimating();
         }
 
         #endregion Override Methods
@@ -183,21 +171,6 @@ namespace GooeyButton.Controls
             ItemProperty.BackgroundColor = color;
             ItemProperty.Opacity = opacity;
             ItemProperty.Radius = Math.Min(ActualWidth, ActualHeight) / 2;
-        }
-
-        public void UpdateIsAnimating()
-        {
-            if (BackgroundShape != null)
-            {
-                if (isAnimating)
-                {
-                    BackgroundShape.Opacity = 0;
-                }
-                else
-                {
-                    BackgroundShape.Opacity = 1;
-                }
-            }
         }
 
         #endregion Methods

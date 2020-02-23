@@ -32,8 +32,8 @@
                     <Grid x:Name="LayoutRoot" 
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="Transparent"
                         Control.IsTemplateFocusTarget="True">
-                        <Ellipse x:Name="BackgroundShape" Fill="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
                                           HorizontalAlignment="Center" VerticalAlignment="Center"
                                           Foreground="{TemplateBinding Foreground}"
