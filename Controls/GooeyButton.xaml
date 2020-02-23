@@ -18,6 +18,8 @@
     <Style TargetType="local:GooeyButton">
         <Setter Property="Background" Value="{ThemeResource GooeyButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="{ThemeResource GooeyButtonForegroundBrush}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="TabFocusNavigation" Value="Local" />
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="80" />
         <Setter Property="Distance" Value="100" />
@@ -75,8 +77,8 @@
                             <!--#endregion-->
                         </Grid.Resources>
                         <Canvas x:Name="Win2DHost" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <ItemsPresenter />
-                        <Button x:Name="InnerButton" Style="{StaticResource InnerButtonStyle}">
+                        <ItemsPresenter x:Name="ItemsPresenter" />
+                        <Button x:Name="InnerButton" Style="{StaticResource InnerButtonStyle}" TabFocusNavigation="{TemplateBinding TabFocusNavigation}">
                             <Grid>
                                 <Ellipse x:Name="BackgroundShape" Fill="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                                 <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"

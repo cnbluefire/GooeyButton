@@ -15,6 +15,7 @@ namespace GooeyButton.Controls
     public class GooeyButtonItemsPanel : Canvas
     {
         public double Duration => 1.8d;
+        public double CloseDuration => Duration - 0.6d;
 
         private List<Storyboard> openStoryboards = new List<Storyboard>();
         private List<Storyboard> closeStoryboards = new List<Storyboard>();
@@ -38,6 +39,16 @@ namespace GooeyButton.Controls
             {
                 StartAnimation();
             }
+            else
+            {
+                foreach (var item in Children)
+                {
+                    if (item is GooeyButtonItem gooeyButtonItem)
+                    {
+                        gooeyButtonItem.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
 
             return size;
         }
@@ -56,9 +67,10 @@ namespace GooeyButton.Controls
 
             foreach (var item in Children)
             {
-                if(item is GooeyButtonItem gooeyButtonItem)
+                if (item is GooeyButtonItem gooeyButtonItem)
                 {
                     gooeyButtonItem.IsAnimating = true;
+                    gooeyButtonItem.Visibility = Visibility.Visible;
                 }
             }
 
@@ -113,7 +125,7 @@ namespace GooeyButton.Controls
             var easing2 = new ElasticEase()
             {
                 Oscillations = 1,
-                Springiness = 10
+                Springiness = 8
             };
             bool sign = false;
             for (int i = 0; i < Children.Count; i++)
@@ -155,7 +167,7 @@ namespace GooeyButton.Controls
                 }
 
                 var sb1 = CreateTranslateStoryboard(x, y, Children[i], trans, easing1, Duration);
-                var sb2 = CreateTranslateStoryboard(0, 0, Children[i], trans, easing2, Duration - 0.4);
+                var sb2 = CreateTranslateStoryboard(0, 0, Children[i], trans, easing2, CloseDuration);
 
                 if (!sign)
                 {
@@ -231,6 +243,7 @@ namespace GooeyButton.Controls
                 if (item is GooeyButtonItem gooeyButtonItem)
                 {
                     gooeyButtonItem.IsAnimating = false;
+                    if (!Expanded) gooeyButtonItem.Visibility = Visibility.Collapsed;
                 }
             }
             ItemsAnimationCompleted?.Invoke(this, EventArgs.Empty);

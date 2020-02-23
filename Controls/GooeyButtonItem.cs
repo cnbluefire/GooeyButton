@@ -24,7 +24,6 @@ namespace GooeyButton.Controls
         private long brushColorToken = -1;
         private long brushOpacityToken = -1;
         private bool isAnimating = false;
-        private Brush TransparentBrush;
         Shape BackgroundShape;
 
         public GooeyButtonItemProperty ItemProperty { get; }
@@ -98,7 +97,6 @@ namespace GooeyButton.Controls
                 brushColorToken = newSolid.RegisterPropertyChangedCallback(SolidColorBrush.ColorProperty, OnBrushColorChanged);
                 brushOpacityToken = newSolid.RegisterPropertyChangedCallback(SolidColorBrush.OpacityProperty, OnBrushOpacityChanged);
             }
-            UpdateIsAnimating();
             OnGooeyButtonItemPropertyChanged();
         }
 
@@ -193,15 +191,11 @@ namespace GooeyButton.Controls
             {
                 if (isAnimating)
                 {
-                    if (TransparentBrush == null)
-                    {
-                        TransparentBrush = new SolidColorBrush(Colors.Transparent);
-                    }
-                    BackgroundShape.Fill = TransparentBrush;
+                    BackgroundShape.Opacity = 0;
                 }
                 else
                 {
-                    BackgroundShape.Fill = Background;
+                    BackgroundShape.Opacity = 1;
                 }
             }
         }

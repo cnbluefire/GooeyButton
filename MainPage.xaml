@@ -20,5 +20,6 @@
                 </DataTemplate>
             </controls:GooeyButton.ItemTemplate>
         </controls:GooeyButton>
+        <Button>哈哈</Button>
     </Grid>
 </Page>

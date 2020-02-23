@@ -161,7 +161,7 @@ namespace GooeyButton.Controls
             mainButtonCloseStoryboard = null;
             if (panel == null) return;
 
-            var begin = 0.17d;
+            var begin = 0.16d;
 
             var ease1 = new CubicEase() { EasingMode = EasingMode.EaseOut };
             var ease2 = new ElasticEase() { Oscillations = 1, Springiness = 5, EasingMode = EasingMode.EaseOut };

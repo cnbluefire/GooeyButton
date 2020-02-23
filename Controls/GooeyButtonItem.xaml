@@ -23,24 +23,16 @@
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="Width" Value="60" />
         <Setter Property="Height" Value="60" />
+        <Setter Property="TabFocusNavigation" Value="Once" />
+        <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+        <Setter Property="FocusVisualMargin" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:GooeyButtonItem">
-                    <Grid x:Name="LayoutRoot"
+                    <Grid x:Name="LayoutRoot" 
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                        <!--<VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="AnimationStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="Animating">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundShape" Storyboard.TargetProperty="Fill" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>-->
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Control.IsTemplateFocusTarget="True">
                         <Ellipse x:Name="BackgroundShape" Fill="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
                                           HorizontalAlignment="Center" VerticalAlignment="Center"
