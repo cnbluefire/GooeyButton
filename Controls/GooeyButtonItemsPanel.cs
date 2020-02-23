@@ -155,7 +155,7 @@ namespace GooeyButton.Controls
                 }
 
                 var sb1 = CreateTranslateStoryboard(x, y, Children[i], trans, easing1, Duration);
-                var sb2 = CreateTranslateStoryboard(0, 0, Children[i], trans, easing2, Duration);
+                var sb2 = CreateTranslateStoryboard(0, 0, Children[i], trans, easing2, Duration - 0.4);
 
                 if (!sign)
                 {
