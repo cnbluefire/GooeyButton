@@ -29,7 +29,7 @@
                     <Grid x:Name="LayoutRoot"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <VisualStateManager.VisualStateGroups>
+                        <!--<VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="AnimationStates">
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Animating">
@@ -40,7 +40,7 @@
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                        </VisualStateManager.VisualStateGroups>-->
                         <Ellipse x:Name="BackgroundShape" Fill="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
                                           HorizontalAlignment="Center" VerticalAlignment="Center"

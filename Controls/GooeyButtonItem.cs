@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
 
 // The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
@@ -22,8 +23,20 @@ namespace GooeyButton.Controls
         private Brush background;
         private long brushColorToken = -1;
         private long brushOpacityToken = -1;
+        private bool isAnimating = false;
+        private Brush TransparentBrush;
+        Shape BackgroundShape;
 
         public GooeyButtonItemProperty ItemProperty { get; }
+        public bool IsAnimating
+        {
+            get => isAnimating;
+            set
+            {
+                isAnimating = value;
+                UpdateIsAnimating();
+            }
+        }
 
         public GooeyButtonItem()
         {
@@ -34,6 +47,17 @@ namespace GooeyButton.Controls
             RegisterPropertyChangedCallback(BackgroundProperty, OnBackgroundChanged);
             RegisterPropertyChangedCallback(OpacityProperty, OnOpacityChanged);
         }
+
+        #region Override Methods
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            BackgroundShape = GetTemplateChild(nameof(BackgroundShape)) as Shape;
+            UpdateIsAnimating();
+        }
+
+        #endregion Override Methods
 
         #region Event Methods
 
@@ -74,6 +98,7 @@ namespace GooeyButton.Controls
                 brushColorToken = newSolid.RegisterPropertyChangedCallback(SolidColorBrush.ColorProperty, OnBrushColorChanged);
                 brushOpacityToken = newSolid.RegisterPropertyChangedCallback(SolidColorBrush.OpacityProperty, OnBrushOpacityChanged);
             }
+            UpdateIsAnimating();
             OnGooeyButtonItemPropertyChanged();
         }
 
@@ -160,6 +185,25 @@ namespace GooeyButton.Controls
             ItemProperty.BackgroundColor = color;
             ItemProperty.Opacity = opacity;
             ItemProperty.Radius = Math.Min(ActualWidth, ActualHeight) / 2;
+        }
+
+        public void UpdateIsAnimating()
+        {
+            if (BackgroundShape != null)
+            {
+                if (isAnimating)
+                {
+                    if (TransparentBrush == null)
+                    {
+                        TransparentBrush = new SolidColorBrush(Colors.Transparent);
+                    }
+                    BackgroundShape.Fill = TransparentBrush;
+                }
+                else
+                {
+                    BackgroundShape.Fill = Background;
+                }
+            }
         }
 
         #endregion Methods

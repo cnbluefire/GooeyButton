@@ -54,9 +54,12 @@ namespace GooeyButton.Controls
                 ResetAnimation();
             }
 
-            foreach (Control item in Children)
+            foreach (var item in Children)
             {
-                VisualStateManager.GoToState(item, "Animating", false);
+                if(item is GooeyButtonItem gooeyButtonItem)
+                {
+                    gooeyButtonItem.IsAnimating = true;
+                }
             }
 
             if (Expanded)
@@ -223,9 +226,12 @@ namespace GooeyButton.Controls
 
         private void OnStoryboardCompleted(object sender, object e)
         {
-            foreach (Control item in Children)
+            foreach (var item in Children)
             {
-                VisualStateManager.GoToState(item, "Normal", false);
+                if (item is GooeyButtonItem gooeyButtonItem)
+                {
+                    gooeyButtonItem.IsAnimating = false;
+                }
             }
             ItemsAnimationCompleted?.Invoke(this, EventArgs.Empty);
         }
